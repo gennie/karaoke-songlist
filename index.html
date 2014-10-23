@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Karaoke Song List</title>
+
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.26/angular.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-utils/0.1.1/angular-ui-utils.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.7.0/underscore-min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.js"></script>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+  <script src="/songlist.js"></script>
+  <script src="/songs.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.css">
+  <link rel="stylesheet" type="text/css" href="/songlist.css">
+</head>
+
+<body ng-app="SonglistApp">
+  <nav class="navbar navbar-inverse no-rounding">
+    <div class="container">
+      <h2 class="page-title">DJ Dale's Karaoke Song List</h2>
+    </div>
+  </nav>
+  <div ng-controller="listController">
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <input ng-model="searchText" class="form-control" placeholder="Type and hit enter to search" ui-keypress="{13:'filterSongs(searchText)'}">
+        </div>
+      </div>
+
+      <p class="help">
+        To sort by title or artist, tap the column header
+        <br>
+        <small>Due to large number of entries, searching or sorting may take a while to load</small>
+      </p>
+
+      <div class="row header">
+        <div class="col-xs-12 col-sm-5 primary" ng-click="predicate = 'title'" ng-class="{ 'selected-sort': predicate == 'title' }"><p>Title</p></div>
+        <div class="col-xs-8 col-sm-5" ng-click="predicate = 'artist'" ng-class="{ 'selected-sort': predicate == 'artist' }"><p>Artist</p></div>
+        <div class="col-xs-4 col-sm-2 text-right"><p>Code</p></div>
+      </div>
+
+      <div ng-repeat="song in songList | orderBy:predicate" class="row song">
+        <div class="col-xs-12 col-sm-5 primary"><p>{{ song.title }}</p></div>
+        <div class="col-xs-8 col-sm-5"><p>{{ song.artist }}</p></div>
+        <div class="col-xs-4 col-sm-2 text-right"><p>{{ song.id }}</p></div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
