@@ -1,0 +1,46 @@
+*[ng-click] {
+  cursor: pointer;
+}
+
+.no-rounding {
+  border-radius: 0;
+}
+
+.page-title {
+  color: #FFF;
+  text-align: center;
+  margin-top: 15px;
+}
+
+.help {
+  text-align: center;
+  margin: 10px 0 20px;
+}
+
+.header {
+  position: relative;
+  font-weight: bold;
+  border-bottom: 2px solid #bbb;
+}
+
+.selected-sort:after {
+  content: "\25BC";
+  display: inline-block;
+  font-size: 12px;
+  margin: 2px 0 0 3px;
+}
+
+.song {
+  border-bottom: 1px solid #bbb;
+}
+
+.header p, .song p {
+  display: inline-block;
+  margin: 8px 0;
+}
+
+@media (max-width: 768px) {
+  .primary {
+    border-bottom: 1px solid #eee;
+  }
+}
